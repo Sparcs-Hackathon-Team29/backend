@@ -1,6 +1,8 @@
 package com.team29.ArtifactV2.domain.member.service;
 
 
+import com.team29.ArtifactV2.domain.member.dto.LoginDto;
+import com.team29.ArtifactV2.domain.member.dto.LoginResponseDto;
 import com.team29.ArtifactV2.domain.member.dto.ResponseDto;
 import com.team29.ArtifactV2.domain.member.dto.SignUpDto;
 import com.team29.ArtifactV2.domain.member.entity.Member;
@@ -50,4 +52,36 @@ public class AuthService {
     }
 
 
+    public ResponseDto<LoginResponseDto> login(LoginDto dto) {
+        String email = dto.getEmail();
+        String password = dto.getPassword();
+
+        try {
+            // 사용자 id/password 일치하는지 확인
+            boolean existed = memberRepository.existsByEmailAndPassword(email, password);
+            if(!existed) {
+                return ResponseDto.setFailed("입력하신 로그인 정보가 존재하지 않습니다.");
+            }
+        } catch (Exception e) {
+            return ResponseDto.setFailed("데이터베이스 연결에 실패하였습니다.");
+        }
+
+        Member member = null;
+
+        try {
+            // 값이 존재하는 경우 사용자 정보 불러옴 (기준 email)
+            member = memberRepository.findByEmail(email).get();
+        } catch (Exception e) {
+            return ResponseDto.setFailed("데이터베이스 연결에 실패하였습니다.");
+        }
+
+        member.setPassword("");
+
+        String token = "";
+        int exprTime = 3600000;     // 1h
+
+        LoginResponseDto loginResponseDto = new LoginResponseDto(token, exprTime, member);
+
+        return ResponseDto.setSuccessData("로그인에 성공하였습니다.", loginResponseDto);
+    }
 }
