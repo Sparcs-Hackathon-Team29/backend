@@ -3,19 +3,13 @@ package com.team29.ArtifactV2.domain.member.controller;
 import com.team29.ArtifactV2.domain.member.dto.SignUpDto;
 import com.team29.ArtifactV2.domain.member.service.signUp.SignUpService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 @RestController
-public class MemberController {
+public class LoginController {
     private final SignUpService signUpService;
 
-    @GetMapping("/home")
-    public String check() {
-        return "Success";
-    }
     @PostMapping("/join")
     public String joinProcess(SignUpDto joinDTO) {
 
