@@ -54,10 +54,11 @@ public class SecurityConfig {
                         configuration.setAllowedOrigins(Collections.singletonList("http://localhost:3000"));
                         configuration.setAllowedMethods(Collections.singletonList("*"));
                         configuration.setAllowCredentials(true);
-                        configuration.setAllowedHeaders(Collections.singletonList("*"));
                         configuration.setMaxAge(3600L);
-                        configuration.setExposedHeaders(Collections.singletonList("Authorization"));
-
+                        //configuration.setExposedHeaders(Collections.singletonList("Access"));
+                        configuration.setAllowedHeaders(Collections.singletonList("*"));
+                        configuration.setExposedHeaders(Collections.singletonList("Access"));
+                        //configuration.setExposedHeaders(Collections.singletonList("Set-Cookie"));
                         return configuration;
                     }
                 })));
@@ -72,7 +73,7 @@ public class SecurityConfig {
         //경로별 인가 작업
         http.authorizeHttpRequests((auth) -> auth
                         .requestMatchers("/login", "/", "/join").permitAll()
-                        .requestMatchers("/home/**").hasRole("ADMIN")
+                        .requestMatchers("/admin").hasRole("ADMIN")
                         .requestMatchers("/reissue").permitAll()
                         .anyRequest().authenticated());
 
