@@ -29,6 +29,7 @@ public class CustomUserDetails implements UserDetails {
         return collection;
     }
 
+
     @Override
     public String getPassword() {
 
@@ -64,4 +65,9 @@ public class CustomUserDetails implements UserDetails {
 
         return true;
     }
+
+    public Long getId() {
+        return member.getId();
+    }
+
 }

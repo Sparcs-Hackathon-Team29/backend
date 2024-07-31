@@ -50,15 +50,13 @@ public class SecurityConfig {
                     public CorsConfiguration getCorsConfiguration(HttpServletRequest request) {
 
                         CorsConfiguration configuration = new CorsConfiguration();
-
-                        configuration.setAllowedOrigins(Collections.singletonList("http://localhost:3000"));
+                        configuration.setAllowedOrigins(Collections.singletonList("*"));
                         configuration.setAllowedMethods(Collections.singletonList("*"));
-                        configuration.setAllowCredentials(true);
-                        configuration.setMaxAge(3600L);
-                        //configuration.setExposedHeaders(Collections.singletonList("Access"));
+                        configuration.setAllowCredentials(false);
+                        configuration.setMaxAge(7200L);
+
                         configuration.setAllowedHeaders(Collections.singletonList("*"));
                         configuration.setExposedHeaders(Collections.singletonList("Access"));
-                        //configuration.setExposedHeaders(Collections.singletonList("Set-Cookie"));
                         return configuration;
                     }
                 })));
@@ -72,9 +70,8 @@ public class SecurityConfig {
 
         //경로별 인가 작업
         http.authorizeHttpRequests((auth) -> auth
-                        .requestMatchers("/login", "/", "/join").permitAll()
-                        .requestMatchers("/admin").hasRole("ADMIN")
-                        .requestMatchers("/reissue").permitAll()
+                        .requestMatchers("/login", "/", "/join","/reissue").permitAll()
+                        .requestMatchers("/api/**").hasRole("ADMIN")
                         .anyRequest().authenticated());
 
         http.addFilterBefore(new JWTFilter(jwtUtil),LoginFilter.class);

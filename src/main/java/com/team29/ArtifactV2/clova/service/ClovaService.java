@@ -30,11 +30,11 @@ public class ClovaService {
     private String content =
             "    - 여행 일정 짜주는 system"+
             "    - 지역, 시간, 키워드를 입력하면 여행 일정을 생성합니다." +
-            "    - 장소를 추천해 줄때 시간과 목적지를 고려해서 추천해 줍니다." +
+            "    - 장소를 추천해 줄때 시간과 키워드를 고려해서 추천해 줍니다." +
             "    - 키워드를 반영해서 목적지를 추천해 줍니다"+
-            "    - 목적지는 구체적인 이름으로 추천해 줍니다. "+
-            "    - 일정이 적다면 최소 3개 이상을 추천합니다. "+
-            "    - 일정은 길다면 5개 이하를 추천합니다. ";
+            "    - 목적지는 구체적인 이름 으로 추천해 줍니다. "+
+            "    - 일정은 길다면 5개 이하를 추천합니다. "+
+                    "   - 최소 3개 이상을 여행지를 추천합니다. ";
 
     private String content2 = "대답 하지않고 Json 문자만 반환해";
 
@@ -119,7 +119,13 @@ public class ClovaService {
 
                         CompletionRequest.Message.builder()
                                 .role("user")
-                                .content(qusResponse+" 추천해준 목적지와 주소를 Json 형태로 반환해줘")
+                                .content(qusResponse+" 추천해준 목적지와 주소를 Json 형태로 반환해줘"
+                                +" 다음과 같은 형태를 유지해야해 {\n" +
+                                                "    \"name\":\"\", \"address\":\"\"\n" +
+                                                "}"
+
+                                )
+
                                 .build()
                 ))
                 .requestData(requestData)
