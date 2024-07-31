@@ -16,7 +16,7 @@ import java.util.Iterator;
 @RestController
 @Slf4j
 public class HomeController {
-    @GetMapping("/home")
+    @GetMapping("/")
     public String check() {
         String name = SecurityContextHolder.getContext().getAuthentication().getName();
 
@@ -25,9 +25,8 @@ public class HomeController {
         Collection<? extends GrantedAuthority> authorities = authentication.getAuthorities();
         Iterator<? extends GrantedAuthority> iter = authorities.iterator();
         GrantedAuthority auth = iter.next();
-        String role = auth.getAuthority();
 
-        return "Success " + name + " " + role;
+        return "home " + name;
     }
 
 
