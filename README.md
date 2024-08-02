@@ -44,13 +44,13 @@
      ```
 **5. 클로바 X 여행 삭제**
    - url : `/api/recommend/delete`
-   - method : `DELETE`
+   - method : `DELETE`
    - 설명 : 클로바 X를 이용한 여행 삭제
 
 ### 데이터 조회
 **6. 여행 조회**
    - url : `/api/recommend/{username}
-   - method : `GET`
+   - method : `GET`
    - 설명 : 사용자가 생성한 여행 조회
    - response
      ```
@@ -96,7 +96,7 @@
 
 **6. 랜덤 여행 추천**
    - url : `/api/random/
-   - method : `GET`
+   - method : `GET`
    - 설명 : 사용자가 랜덤으로 생성한 여행 조회
    - request
      ```
