@@ -1,9 +1,9 @@
-package com.team29.ArtifactV2.domain.member.controller;
+package com.team29.ArtifactV2.global.security.controller;
 
 
 import com.team29.ArtifactV2.domain.member.entity.RefreshEntity;
 import com.team29.ArtifactV2.domain.member.repository.RefreshRepository;
-import com.team29.ArtifactV2.domain.member.security.jwt.JWTUtil;
+import com.team29.ArtifactV2.global.security.jwt.JWTUtil;
 import io.jsonwebtoken.ExpiredJwtException;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;

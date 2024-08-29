@@ -1,4 +1,4 @@
-package com.team29.ArtifactV2.domain.config;
+package com.team29.ArtifactV2.global.config;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;

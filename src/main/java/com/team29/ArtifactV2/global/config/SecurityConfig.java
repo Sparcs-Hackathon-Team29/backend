@@ -1,10 +1,10 @@
-package com.team29.ArtifactV2.domain.config;
+package com.team29.ArtifactV2.global.config;
 
 import com.team29.ArtifactV2.domain.member.repository.RefreshRepository;
-import com.team29.ArtifactV2.domain.member.security.jwt.CustomLogoutFilter;
-import com.team29.ArtifactV2.domain.member.security.jwt.JWTFilter;
-import com.team29.ArtifactV2.domain.member.security.jwt.JWTUtil;
-import com.team29.ArtifactV2.domain.member.security.jwt.LoginFilter;
+import com.team29.ArtifactV2.global.security.jwt.CustomLogoutFilter;
+import com.team29.ArtifactV2.global.security.jwt.JWTFilter;
+import com.team29.ArtifactV2.global.security.jwt.JWTUtil;
+import com.team29.ArtifactV2.global.security.jwt.LoginFilter;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
