@@ -1,4 +1,4 @@
-package com.team29.ArtifactV2.domain.member.security.jwt;
+package com.team29.ArtifactV2.global.security.jwt;
 
 
 import com.team29.ArtifactV2.domain.member.dto.CustomUserDetails;
