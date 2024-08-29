@@ -54,7 +54,6 @@ public class SecurityConfig {
                         configuration.setAllowedMethods(Collections.singletonList("*"));
                         configuration.setAllowCredentials(false);
                         configuration.setMaxAge(7200L);
-
                         configuration.setAllowedHeaders(Collections.singletonList("*"));
                         configuration.setExposedHeaders(Collections.singletonList("Access"));
                         return configuration;
@@ -70,7 +69,7 @@ public class SecurityConfig {
 
         //경로별 인가 작업
         http.authorizeHttpRequests((auth) -> auth
-                        .requestMatchers("/login", "/", "/join","/reissue").permitAll()
+                        .requestMatchers("/login", "/", "/join","/reissue",  "/swagger-ui/**", "/v3/api-docs/**").permitAll()
                         .requestMatchers("/api/**").hasRole("ADMIN")
                         .anyRequest().authenticated());
 
