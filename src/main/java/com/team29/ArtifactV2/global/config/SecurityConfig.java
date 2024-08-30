@@ -9,10 +9,12 @@ import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
@@ -60,10 +62,9 @@ public class SecurityConfig {
                     }
                 })));
 
-        http.csrf((auth) -> auth.disable());
+        http.csrf(AbstractHttpConfigurer::disable);
         //From 로그인 방식 disable
         http.formLogin((auth) -> auth.disable());
-
         //http basic 인증 방식 disable
         http.httpBasic((auth) -> auth.disable());
 
@@ -74,9 +75,7 @@ public class SecurityConfig {
                         .anyRequest().authenticated());
 
         http.addFilterBefore(new JWTFilter(jwtUtil),LoginFilter.class);
-
         http.addFilterAt(new LoginFilter(authenticationManager(authenticationConfiguration), jwtUtil, refreshRepository), UsernamePasswordAuthenticationFilter.class);
-
         http.addFilterBefore(new CustomLogoutFilter(jwtUtil, refreshRepository), LogoutFilter.class);
         //세션 설정
         http.sessionManagement((session) -> session
