@@ -36,7 +36,7 @@ public class ClovaService {
             "    - 일정은 길다면 5개 이하를 추천합니다. "+
                     "   - 최소 3개 이상을 여행지를 추천합니다. ";
 
-    private String content2 = "대답 하지않고 Json 문자만 반환해";
+    private String content2 = "대답하지 않고 Json 문자만 반환해";
 
 
     private final RestTemplate restTemplate;
@@ -63,8 +63,6 @@ public class ClovaService {
                                 .role("assistant")
                                 .content(content)
                                 .build(),
-
-
 
                         CompletionRequest.Message.builder()
                                 .role(requestDto.getRole())
